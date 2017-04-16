@@ -39,9 +39,15 @@ namespace TwitchBot
                         irc.sendChatMessage("!pvp " + pseudo);
                         
                     }
+                    if (message.Contains("ping"))
+                    {
+                        irc.sendPong();
+                    }
                 }
             }
         }
+
+
 
         static string getPseudo(string message)
         {

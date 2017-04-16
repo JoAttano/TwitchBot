@@ -51,6 +51,11 @@ namespace TwitchBot
                 + ".tmi.twitch.tv PRIVMSG #" + channel + " :" + message);
         }
 
+        public void sendPong()
+        {
+            sendIrcMessage("PONG tmi.twitch.tv\r\n");
+        }
+
         public string readMessage()
         {
             string message = inputStream.ReadLine();
