@@ -35,7 +35,7 @@ namespace TwitchBot
                     if (message.Contains("!pvp jolerobot")|| message.Contains("!pvp jolamachette"))
                     {
                         string pseudo = getPseudo(message);
-                        //commentaire
+                        
                         irc.sendChatMessage("!pvp " + pseudo);
                         
                     }
