@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace TwitchBot
+namespace BotNetCore
 {
     class Program
     {
@@ -18,16 +18,8 @@ namespace TwitchBot
             IrcBot irc = new IrcBot("irc.twitch.tv", 6667, "JoLeRobot",
                 "oauth:qj4ri8j6z4n80tdrj4drq1zd4wtkqj");
 
-            string channel;
-
-            Console.WriteLine("Le Bot Twitch");
-            Console.WriteLine();
-            Console.WriteLine("Tapez le nom du channel");
-
-            channel = Console.ReadLine();
-            irc.Channel = channel;
             chatThread.Start(irc);
-            
+            /*
             while (!leave)
             {
                 string command;
@@ -35,30 +27,32 @@ namespace TwitchBot
 
                 if (command != null)
                 {
+                    Console.WriteLine("command");
 
-                    if (command.Contains("!exit")) {
+                    if (command.Contains("exit")) {
                         Console.WriteLine("command exit");
                         leave = !leave;
-                        irc.Close();
                         Console.WriteLine(leave);
                     }
-
-                    if (command.Contains("!send"))
-                    {
-
-                    }
                 }
-            }
+            }*/
 
-            //chatThread.Abort();
+            
 
         }
 
         static void ircThread(object argIrc)
         {
             IrcBot irc = (IrcBot)argIrc;
+            string channel;
 
-            irc.joinRoom();
+            Console.WriteLine("Le Bot Twitch");
+            Console.WriteLine();
+            Console.WriteLine("Tapez le nom du channel");
+
+            channel = Console.ReadLine();
+
+            irc.joinRoom(channel);
 
             while (!leave)
             {

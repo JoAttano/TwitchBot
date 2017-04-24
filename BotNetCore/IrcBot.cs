@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Net;
 
-namespace TwitchBot
+namespace BotNetCore
 {
     class IrcBot
     {
@@ -24,7 +20,8 @@ namespace TwitchBot
         {
             this.userName = userName;
 
-            tcpClient = new TcpClient(ip, port);
+            tcpClient = new TcpClient();
+            tcpClient.Client.Connect(ip, port);
             inputStream = new StreamReader(tcpClient.GetStream());
             outputStream = new StreamWriter(tcpClient.GetStream());
 
@@ -71,10 +68,7 @@ namespace TwitchBot
             return message;
         }
 
-        public void Close()
-        {
-            inputStream.Close();
-            outputStream.Close();
-        }
+            
+         
     }
 }
